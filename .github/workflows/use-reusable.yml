@@ -8,6 +8,10 @@ jobs:
     steps:
       - name: Testing something
         run: echo "testing something"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
   build:
     needs: test
     uses: ./.github/workflows/reusable.yml
+    with:
+      artifact-name: dist-name
