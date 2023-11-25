@@ -1,0 +1,9 @@
+name: Reusable
+on:
+  workflow_call
+
+job:
+  test:
+    steps:
+      - name: Output
+        run: echo "outputing something..."
