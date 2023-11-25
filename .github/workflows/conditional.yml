@@ -2,8 +2,6 @@ name: Conditional
 on: 
   push:
 
-permissions: read-only
-
 jobs:
   test:
     runs-on: ubuntu-latest
