@@ -28,3 +28,12 @@ jobs:
       - name: Get Output
         if: failure() && steps.run-test.outcome == 'failed'
         run: echo ${{needs.build.outputs.artifact}}
+
+  conditional:
+    needs: [test, build, print-result]
+    if: failure()
+    needs: print-result
+    runs-on: windows-latest
+    steps:
+    - name: Output
+      run: echo "something went wrong"
