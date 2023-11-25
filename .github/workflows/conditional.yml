@@ -2,6 +2,8 @@ name: Conditional
 on: 
   push:
 
+permissions: read-only
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,3 +16,10 @@ jobs:
         if: failure() && steps.checkout.outcome == 'failed'
       # Only print this if the test report failed
         run: echo "Test Failed, upload artifact"
+  build:
+    # Run this workflow if some job failed
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+     - name: Output Error Message
+      run: echo "Something failed"
