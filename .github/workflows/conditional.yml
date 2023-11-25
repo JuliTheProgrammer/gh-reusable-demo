@@ -15,7 +15,8 @@ jobs:
       # Only print this if the test report failed
         run: echo "Test Failed, upload artifact"
   build:
-    # Run this workflow if some job failed
+    # Run this workflow if some job failed therfore we need the needs
+    needs: test
     if: failure()
     runs-on: ubuntu-latest
     steps:
