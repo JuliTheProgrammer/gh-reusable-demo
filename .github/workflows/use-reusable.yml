@@ -6,7 +6,8 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
-      -run: echo "testing something"
+      - name: Testing something
+        run: echo "testing something"
   build:
     needs: test
     uses: /workspaces/gh-reusable-demo/.github/workflows/reusable.yml

@@ -4,6 +4,7 @@ on:
 
 job:
   test:
+    runs-on: windows-latest
     steps:
       - name: Output
         run: echo "outputing something..."
