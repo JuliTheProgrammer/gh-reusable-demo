@@ -12,6 +12,6 @@ jobs:
         uses: actions/upload-artifact@v3
   build:
     needs: test
-    uses: ./.github/workflows/reusable.yml
+    uses: /.github/workflows/reusable.yml
     with:
       artifact-name: dist-name
