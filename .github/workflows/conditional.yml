@@ -1,0 +1,16 @@
+name: Conditional
+on: 
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        id: checkout
+        uses: actions/checkout@v4
+      # Do some imaginary testing
+      - name: Failed Test Report
+        if: failure() && steps.checkout.outcome == 'failed'
+      # Only print this if the test report failed
+        run: echo "Test Failed, upload artifact"
