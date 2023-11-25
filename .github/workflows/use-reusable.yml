@@ -3,6 +3,7 @@ on:
   push:
 
 jobs:
+
   test:
     runs-on: windows-latest
     steps:
@@ -10,8 +11,20 @@ jobs:
         run: echo "testing something"
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
+
   build:
     needs: test
     uses: /.github/workflows/reusable.yml
     with:
       artifact-name: dist-name
+
+  print-result:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Run test
+        id: run-test
+        run: npm run test
+      - name: Get Output
+        if: failure() && steps.run-test.outcome == 'failed'
+        run: echo ${{needs.build.outputs.artifact}}

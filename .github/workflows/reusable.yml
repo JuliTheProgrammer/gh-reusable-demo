@@ -7,10 +7,16 @@ on:
         required: true
         default: dist
         tpye: string
+    outputs:
+      artifact:
+        description: The artifact after the build process
+        value: ${{ jobs.test.outputs.result }}
 
 jobs:
   test:
     runs-on: windows-latest
+    outputs:
+      result: ${{ steps.status.outputs.result }}
     steps:
       - name: Use Code
         uses: actions/download-artifact@v3
@@ -20,3 +26,6 @@ jobs:
         run: ls    
       - name: Output
         run: echo "outputing something..."
+      - name: status
+        id: status
+        run: echo "result=success" >> $GITHUB_OUTPUT
