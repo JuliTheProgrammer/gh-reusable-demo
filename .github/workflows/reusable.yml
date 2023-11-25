@@ -1,8 +1,8 @@
 name: Reusable
 on:
-  workflow_call
+  workflow_call:
 
-job:
+jobs:
   test:
     runs-on: windows-latest
     steps:
