@@ -1,10 +1,22 @@
 name: Reusable
 on:
   workflow_call:
+    inputs: 
+      artifact-name:
+        description: The name of the deploybale artifact file
+        required: true
+        default: dist
+        tpye: string
 
 jobs:
   test:
     runs-on: windows-latest
     steps:
+      - name: Use Code
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifact-name }}
+      - name: List files
+        run: ls    
       - name: Output
         run: echo "outputing something..."
