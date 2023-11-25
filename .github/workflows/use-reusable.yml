@@ -10,4 +10,4 @@ jobs:
         run: echo "testing something"
   build:
     needs: test
-    uses: /workspaces/gh-reusable-demo/.github/workflows/reusable.yml
+    uses: ./.github/workflows/reusable.yml
